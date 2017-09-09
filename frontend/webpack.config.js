@@ -12,15 +12,17 @@ module.exports = {
         contentBase : './public'
     },
     resolve : {
-        extensions : ['.js', '.jsx'],
+        extensions : ['', '.js', '.jsx'],
         alias : {
-            modules : __dirname + '/node_modules'
+            modules : __dirname + '/node_modules',
+            jquery : 'modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js',
+            bootstrap : 'modules/admin-lte/bootstrap/js/bootstrap.js'
         }
     },
     plugins : [
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
+            $ : 'jquery',
+            jQuery : 'jquery',
             'window.jQuery' : 'jquery'
         }),
         new ExtractTextPlugin('app.css')
@@ -38,7 +40,7 @@ module.exports = {
             test : /\.css$/,
             loader : ExtractTextPlugin.extract('style-loader', 'css-loader')
         }, {
-            test: /\.(svg|woff|woff2|eot|ttf)(\?v=\d+\.\d+\.\d+)?$/,
+            test: /\.(svg|woff|woff2|eot|ttf|png|jpeg|jpg)(\?v=.*)?$/,
             loader : 'file'
         }]
     }
